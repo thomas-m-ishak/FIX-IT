@@ -1,0 +1,39 @@
+﻿@model IEnumerable<FIX_IT.Models.Category>
+
+@{
+    ViewData["Title"] = "Choose Your Service";
+}
+
+<h1 class="display-5 text-center mb-4">Choose Your Service</h1>
+<p class="lead text-center mb-5">Select the service you need to start the booking process.</p>
+
+<div class="row justify-content-center">
+    @if (!Model.Any())
+    {
+        <div class="col-md-8">
+            <div class="alert alert-danger text-center" role="alert">
+                <i class="bi bi-x-octagon-fill"></i> No services are currently available. Please contact support.
+            </div>
+        </div>
+    }
+    else
+    {
+        @foreach (var item in Model)
+        {
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card h-100 shadow-sm border-0">
+                    <div class="card-body text-center">
+                        <i class="bi bi-tools text-primary mb-3" style="font-size: 2.5rem;"></i>
+                        <h4 class="card-title">@item.Name</h4>
+                        <p class="card-text text-muted">@item.Description</p>
+                    </div>
+                    <div class="card-footer bg-white border-top-0 text-center">
+                        <a asp-controller="Bookings" asp-action="Create" asp-route-categoryId="@item.Id" class="btn btn-primary btn-block">
+                            <i class="bi bi-calendar-plus"></i> Book Now
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+</div>

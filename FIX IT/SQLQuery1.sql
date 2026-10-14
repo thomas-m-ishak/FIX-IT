@@ -1,0 +1,1 @@
+DBCC CHECKIDENT ('dbo.Categories', RESEED, 1);

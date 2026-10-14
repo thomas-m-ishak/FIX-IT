@@ -1,0 +1,34 @@
+﻿@using System.Security.Claims
+@{
+    ViewData["Title"] = "لوحة تحكم الفني";
+}
+
+<div class="container mt-4">
+    <h1 class="mb-4 text-success">مرحباً، @User.Identity.Name! (لوحة تحكم الفني)</h1>
+    <p class="lead">هذه هي الواجهة السريعة الخاصة بك. يمكنك إدارة جميع البلاغات المعينة لك من صفحة المتابعة.</p>
+    <hr />
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="alert alert-info" role="alert">
+                <i class="bi bi-info-circle-fill"></i> *تذكير:* لعرض جميع البلاغات المعينة لك، يرجى الذهاب إلى *"بلاغاتي / حجوزاتي"*.
+            </div>
+
+            <a asp-controller="Issues" asp-action="Index" class="btn btn-success btn-lg mt-3">عرض جميع البلاغات المعينة لي</a>
+
+            <h4 class="mt-5">الروابط السريعة:</h4>
+            <div class="list-group">
+                <a asp-controller="Issues" asp-action="Index" class="list-group-item list-group-item-action">
+                    البلاغات المفتوحة حاليًا
+                </a>
+                <a asp-controller="Issues" asp-action="Index" class="list-group-item list-group-item-action">
+                    سجل البلاغات المنجزة
+                </a>
+                <a asp-controller="Technicians" asp-action="Edit" asp-route-id="@User.FindFirstValue(ClaimTypes.NameIdentifier)" class="list-group-item list-group-item-action">
+                    تعديل بيانات ملفك الشخصي
+                </a>
+            </div>
+        </div>
+    </div>
+
+</div>

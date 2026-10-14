@@ -1,0 +1,39 @@
+﻿@model FIX_IT.Models.Booking
+
+@{
+    ViewData["Title"] = "Confirm Payment";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-lg border-0">
+                <div class="card-header bg-success text-white text-center py-4">
+                    <i class="bi bi-credit-card-2-back" style="font-size: 3rem;"></i>
+                    <h3 class="mt-2 fw-bold">Payment Confirmation</h3>
+                </div>
+                <div class="card-body p-4 text-center">
+                    <h5 class="text-muted">Order #@Model.Id</h5>
+                    <h4 class="mb-4">@Model.Title</h4>
+
+                    <div class="alert alert-light border mb-4">
+                        <div class="d-flex justify-content-between">
+                            <span>Service Fee:</span>
+                            <span class="fw-bold text-success">50.00 EGP</span>
+                        </div>
+                    </div>
+
+                    <form asp-action="ConfirmPayment" method="post">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" name="id" value="@Model.Id" />
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-success btn-lg fw-bold shadow">
+                                Pay & Review Service
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

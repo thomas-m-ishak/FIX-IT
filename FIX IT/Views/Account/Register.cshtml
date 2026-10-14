@@ -1,0 +1,63 @@
+﻿@model FIX_IT.Models.User
+
+@{
+    ViewData["Title"] = "Create New Account";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-5">
+            <div class="card shadow-lg border-0 rounded-3">
+                <div class="card-header bg-success text-white text-center py-4">
+                    <h2 class="fw-bold mb-0">Join Us</h2>
+                    <p class="small mb-0">Create your account to start booking services</p>
+                </div>
+                <div class="card-body p-4">
+                    <form asp-action="Register" method="post">
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger py-2 small" role="alert"></div>
+
+                        <div class="form-group mb-3">
+                            <label asp-for="Username" class="form-label fw-bold">Full Name</label>
+                            <input asp-for="Username" class="form-control" placeholder="Enter your full name" required />
+                            <span asp-validation-for="Username" class="text-danger small"></span>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label asp-for="Email" class="form-label fw-bold">Email Address</label>
+                            <input asp-for="Email" type="email" class="form-control" placeholder="name@example.com" required />
+                            <span asp-validation-for="Email" class="text-danger small"></span>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label asp-for="PhoneNumber" class="form-label fw-bold">Phone Number</label>
+                            <input asp-for="PhoneNumber" class="form-control" placeholder="01XXXXXXXXX" required />
+                            <span asp-validation-for="PhoneNumber" class="text-danger small"></span>
+                        </div>
+
+                        <div class="form-group mb-4">
+                            <label asp-for="Password" class="form-label fw-bold">Password</label>
+                            <input asp-for="Password" type="password" class="form-control" placeholder="••••••••" required />
+                            <span asp-validation-for="Password" class="text-danger small"></span>
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-success btn-lg fw-bold shadow-sm">
+                                <i class="bi bi-person-plus-fill"></i> Register Now
+                            </button>
+                        </div>
+                    </form>
+
+                    <div class="text-center mt-4">
+                        <p class="text-muted">Already have an account? <a asp-action="Login" class="text-success fw-bold text-decoration-none">Login here</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

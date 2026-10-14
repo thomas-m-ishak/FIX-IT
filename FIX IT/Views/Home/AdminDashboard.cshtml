@@ -1,0 +1,97 @@
+﻿@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<div class="container mt-4">
+    <h1 class="mb-4 text-danger">Admin FIX IT</h1>
+    <hr />
+
+    <div class="row">
+
+        <div class="col-md-3 mb-4">
+            <div class="card text-white bg-primary shadow">
+                <div class="card-body">
+                    <div class="text-center">
+                        <h4 class="card-title">Total Users</h4>
+                        <h1 class="display-4">@ViewBag.TotalUsers</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 mb-4">
+            <div class="card text-white bg-success shadow">
+                <div class="card-body">
+                    <div class="text-center">
+                        <h4 class="card-title">Total Technicians</h4>
+                        <h1 class="display-4">@ViewBag.TotalTechnicians</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 mb-4">
+            <div class="card text-white bg-info shadow">
+                <div class="card-body">
+                    <div class="text-center">
+                        <h4 class="card-title">Total Bookings</h4>
+                        <h1 class="display-4">@ViewBag.TotalIssues</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 mb-4">
+            <div class="card text-white bg-warning shadow">
+                <div class="card-body">
+                    <div class="text-center">
+                        <h4 class="card-title">Open Bookings</h4>
+                        <h1 class="display-4">@ViewBag.OpenIssues</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-header bg-light">
+                    <h4 class="mb-0">Top Technicians (By Assigned Bookings)</h4>
+                </div>
+                <ul class="list-group list-group-flush">
+                    @if (ViewBag.TopTechnicians != null && ViewBag.TopTechnicians.Count > 0)
+                    {
+                        foreach (var tech in ViewBag.TopTechnicians)
+                        {
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                @tech.Name
+                                <span class="badge bg-primary rounded-pill">@tech.Count Bookings</span>
+                            </li>
+                        }
+                    }
+                    else
+                    {
+                        <li class="list-group-item text-muted">No bookings have been assigned yet.</li>
+                    }
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-header bg-light">
+                    <h4 class="mb-0">Quick Administration Links</h4>
+                </div>
+                <div class="card-body">
+                    <a asp-controller="Users" asp-action="Index" class="btn btn-outline-primary mb-2 me-2">Manage Users</a>
+                    <a asp-controller="Technicians" asp-action="Index" class="btn btn-outline-success mb-2 me-2">Manage Technicians</a>
+                    <a asp-controller="Categories" asp-action="Index" class="btn btn-outline-info mb-2 me-2">Manage Categories</a>
+                    <a asp-controller="Bookings" asp-action="Index" class="btn btn-outline-warning mb-2 me-2">View All Bookings</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

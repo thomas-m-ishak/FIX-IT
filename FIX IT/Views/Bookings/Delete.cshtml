@@ -1,0 +1,36 @@
+﻿@model FIX_IT.Models.Booking
+
+@{
+    ViewData["Title"] = "Delete Booking";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow border-0">
+                <div class="card-header bg-danger text-white text-center py-4">
+                    <i class="bi bi-exclamation-triangle-fill" style="font-size: 3rem;"></i>
+                    <h3 class="mt-2">Are you sure?</h3>
+                    <p class="mb-0">This action cannot be undone.</p>
+                </div>
+                <div class="card-body p-4 text-center">
+                    <h5 class="text-muted">You are about to delete:</h5>
+                    <h4 class="fw-bold my-3">@Model.Title</h4>
+
+                    <div class="alert alert-light border">
+                        <small class="d-block text-muted">Created on: @Model.CreatedDate.ToShortDateString()</small>
+                        <small class="d-block text-muted">Category: @Model.Category?.Name</small>
+                    </div>
+
+                    <form asp-action="Delete">
+                        <input type="hidden" asp-for="Id" />
+                        <div class="d-grid gap-2 mt-4">
+                            <button type="submit" class="btn btn-danger btn-lg">Yes, Delete Permanently</button>
+                            <a asp-action="Index" class="btn btn-outline-secondary">No, Cancel</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

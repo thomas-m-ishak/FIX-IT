@@ -1,0 +1,22 @@
+﻿@{
+    ViewData["Title"] = "Welcome to FIX IT";
+    Layout = "_Layout"; 
+}
+
+<div class="container text-center mt-5">
+    <div class="p-5 bg-light rounded-3">
+        <h1 class="display-3">Welcome to FIX IT!</h1>
+        <p class="lead">Your instant solution for reliable maintenance services.</p>
+        <hr class="my-4">
+        <p>Please log in or register to view our available services and book an appointment.</p>
+
+        <div class="d-grid gap-2 d-md-block">
+            <a asp-controller="Account" asp-action="Login" class="btn btn-primary btn-lg">
+                <i class="bi bi-box-arrow-in-right"></i> Login
+            </a>
+            <a asp-controller="Account" asp-action="Register" class="btn btn-success btn-lg">
+                <i class="bi bi-person-plus-fill"></i> Create Account
+            </a>
+        </div>
+    </div>
+</div>

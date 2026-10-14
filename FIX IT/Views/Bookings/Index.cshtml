@@ -1,0 +1,72 @@
+﻿@model IEnumerable<FIX_IT.Models.Booking>
+
+@{
+    ViewData["Title"] = ViewData["Title"] ?? "My Bookings";
+}
+
+<div class="row mb-4 align-items-center">
+    <div class="col-md-8">
+        <h1 class="display-5 fw-bold text-primary">@ViewData["Title"]</h1>
+    </div>
+    <div class="col-md-4 text-md-end">
+        <a asp-controller="Categories" asp-action="Index" class="btn btn-primary btn-lg shadow">
+            <i class="bi bi-plus-circle-fill"></i> New Booking Request
+        </a>
+    </div>
+</div>
+
+<div class="card shadow border-0">
+    <div class="card-body p-4">
+        @if (!Model.Any())
+        {
+            <div class="alert alert-light text-center py-5" role="alert">
+                <i class="bi bi-calendar-x mb-3 d-block" style="font-size: 3rem; color: #dee2e6;"></i>
+                <h4 class="text-muted">No bookings found yet.</h4>
+                <a asp-controller="Categories" asp-action="Index" class="btn btn-outline-primary mt-2">Browse Services</a>
+            </div>
+        }
+        else
+        {
+            <div class="table-responsive">
+                <table class="table table-hover align-middle">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Service Title</th>
+                            <th>Category</th>
+                            <th>Status</th>
+                            <th>Created Date</th>
+                            <th class="text-center">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td class="fw-bold">@item.Title</td>
+                                <td>
+                                    <span class="badge bg-info text-dark">@item.Category?.Name</span>
+                                </td>
+                                <td>
+                                    @if (item.IsClosed)
+                                    {
+                                        <span class="badge bg-secondary">Closed</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-success">Active</span>
+                                    }
+                                </td>
+                                <td class="text-muted small">@item.CreatedDate.ToString("dd MMM yyyy")</td>
+                                <td class="text-center">
+                                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-outline-dark rounded-pill px-3">
+                                        View Details
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+    </div>
+</div>

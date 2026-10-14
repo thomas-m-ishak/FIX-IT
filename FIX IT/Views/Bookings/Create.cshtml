@@ -1,0 +1,50 @@
+﻿@model FIX_IT.Models.Booking
+
+@{
+    ViewData["Title"] = "Create New Booking";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-7">
+            <div class="card shadow-lg border-0">
+                <div class="card-header bg-primary text-white py-3">
+                    <h3 class="mb-0"><i class="bi bi-pencil-square"></i> New Booking</h3>
+                </div>
+                <div class="card-body p-4">
+                    <form asp-action="Create">
+                        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                        <div class="form-group mb-3">
+                            <label asp-for="Title" class="form-label fw-bold">Request Title</label>
+                            <input asp-for="Title" class="form-control form-control-lg" placeholder="Enter problem title" />
+                            <span asp-validation-for="Title" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label asp-for="Description" class="form-label fw-bold">Full Details</label>
+                            <textarea asp-for="Description" class="form-control" rows="4" placeholder="Describe your issue..."></textarea>
+                            <span asp-validation-for="Description" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group mb-4">
+                            <label class="form-label fw-bold text-primary">Service Category</label>
+                            <select asp-for="CategoryId" class="form-select bg-light fw-bold" asp-items="ViewBag.CategoryId" readonly></select>
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary btn-lg">Submit Request</button>
+                            <a asp-action="Index" class="btn btn-link text-muted">Back to List</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

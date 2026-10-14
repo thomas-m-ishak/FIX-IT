@@ -1,0 +1,33 @@
+﻿@model FIX_IT.Models.User
+@{
+    ViewData["Title"] = "User Details";
+}
+
+<div class="container mt-4">
+    <h2>User Information</h2>
+    <div class="card shadow-sm mt-3">
+        <div class="card-body">
+            <dl class="row mb-0">
+                <dt class="col-sm-3 text-muted">Username</dt>
+                <dd class="col-sm-9 fw-bold">@Model.Username</dd>
+
+                <dt class="col-sm-3 text-muted">Email Address</dt>
+                <dd class="col-sm-9">@Model.Email</dd>
+
+                <dt class="col-sm-3 text-muted">Phone Number</dt>
+                <dd class="col-sm-9">@Model.PhoneNumber</dd>
+
+                <dt class="col-sm-3 text-muted">Account Status</dt>
+                <dd class="col-sm-9">
+                    <span class="badge @(Model.IsAdmin ? "bg-danger" : "bg-primary")">
+                        @(Model.IsAdmin ? "Administrator" : "Standard User")
+                    </span>
+                </dd>
+            </dl>
+        </div>
+        <div class="card-footer bg-transparent">
+            <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-info text-white">Edit</a>
+            <a asp-action="Index" class="btn btn-secondary ms-2">Back to List</a>
+        </div>
+    </div>
+</div>

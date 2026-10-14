@@ -1,0 +1,40 @@
+﻿@model List<FIX_IT.Models.Category>
+
+@{
+    ViewData["Title"] = "Available Services";
+}
+
+<div class="container mt-4">
+    <h1 class="mb-4">Choose Your Service</h1>
+    <p class="lead">Select the service you need to start the booking process.</p>
+    <hr />
+
+    @if (Model != null && Model.Count > 0)
+    {
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            @foreach (var service in Model)
+            {
+                <div class="col">
+                    <div class="card h-100 shadow-sm border-info">
+                        <div class="card-body text-center">
+                            <h5 class="card-title text-info">@service.Name</h5>
+                            <p class="card-text">@service.Description</p>
+
+                            <a asp-controller="Bookings" asp-action="Create"
+                               asp-route-categoryId="@service.Id"
+                               class="btn btn-outline-info mt-3">
+                                Book Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-warning">
+            No services are currently available. Please contact support.
+        </div>
+    }
+</div>

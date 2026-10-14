@@ -1,0 +1,58 @@
+﻿@model FIX_IT.Models.Booking
+
+@{
+    ViewData["Title"] = "Booking Details";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-lg border-0">
+                <div class="card-header bg-dark text-white py-3">
+                    <h3 class="mb-0 text-center"><i class="bi bi-info-circle"></i> Booking Info</h3>
+                </div>
+                <div class="card-body p-4">
+                    <div class="row mb-4 border-bottom pb-2">
+                        <div class="col-sm-4 fw-bold text-muted">Service Title:</div>
+                        <div class="col-sm-8 fs-5 fw-bold text-primary">@Model.Title</div>
+                    </div>
+                    <div class="row mb-4 border-bottom pb-2">
+                        <div class="col-sm-4 fw-bold text-muted">Description:</div>
+                        <div class="col-sm-8 text-secondary">@Model.Description</div>
+                    </div>
+                    <div class="row mb-4 border-bottom pb-2">
+                        <div class="col-sm-4 fw-bold text-muted">Category:</div>
+                        <div class="col-sm-8">
+                            <span class="badge bg-info text-dark fs-6 px-3">@(Model.Category?.Name ?? "General")</span>
+                        </div>
+                    </div>
+                    <div class="row mb-4 border-bottom pb-2">
+                        <div class="col-sm-4 fw-bold text-muted">Date Created:</div>
+                        <div class="col-sm-8 text-dark">@Model.CreatedDate.ToString("f")</div>
+                    </div>
+
+                    <div class="mt-5 d-flex flex-wrap justify-content-between gap-3">
+                        <div class="d-flex gap-2">
+                            <a asp-action="Index" class="btn btn-outline-secondary">
+                                <i class="bi bi-list"></i> My Bookings
+                            </a>
+                            <a asp-controller="Categories" asp-action="Index" class="btn btn-outline-primary">
+                                <i class="bi bi-plus-lg"></i> New Request
+                            </a>
+                        </div>
+
+                        <div class="d-flex gap-2">
+                            <a asp-action="Payment" asp-route-id="@Model.Id" class="btn btn-success px-4 fw-bold">
+                                Payment <i class="bi bi-credit-card"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+}

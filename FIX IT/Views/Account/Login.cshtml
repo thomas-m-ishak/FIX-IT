@@ -1,0 +1,57 @@
+﻿@model FIX_IT.Models.User
+
+@{
+    ViewData["Title"] = "Login - FIX IT";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-5">
+            <div class="card shadow-lg border-0 rounded-3">
+                <div class="card-header bg-primary text-white text-center py-4">
+                    <h2 class="fw-bold mb-0"><i class="bi bi-box-arrow-in-right"></i> Login</h2>
+                    <p class="small mb-0">Welcome back to FIX IT System</p>
+                </div>
+                <div class="card-body p-4">
+                    <form asp-action="Login" method="post">
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger py-2 small" role="alert"></div>
+
+                        <div class="form-group mb-3">
+                            <label asp-for="Email" class="form-label fw-bold">Email Address</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light"><i class="bi bi-envelope"></i></span>
+                                <input asp-for="Email" class="form-control" placeholder="Enter your email" required />
+                            </div>
+                            <span asp-validation-for="Email" class="text-danger small"></span>
+                        </div>
+
+                        <div class="form-group mb-4">
+                            <label asp-for="Password" class="form-label fw-bold">Password</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light"><i class="bi bi-lock"></i></span>
+                                <input asp-for="Password" type="password" class="form-control" placeholder="••••••••" required />
+                            </div>
+                            <span asp-validation-for="Password" class="text-danger small"></span>
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary btn-lg fw-bold shadow-sm">
+                                Login
+                            </button>
+                        </div>
+                    </form>
+
+                    <div class="text-center mt-4">
+                        <p class="text-muted">New here? <a asp-action="Register" class="text-primary fw-bold text-decoration-none">Create an Account</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
